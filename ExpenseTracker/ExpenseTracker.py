@@ -9,10 +9,18 @@ def Add():
     date = input("Enter the date (YYYY-MM-DD): ")
     category = input("Enter the category: ")
     amount = float(input("Enter the amount: "))
-    data_type = input("Enter the type (Income/Expense): ")
+    transaction_type = int(input("Enter the number of the type (Income = 0 / Expense = 1): "))
+
+    if transaction_type == 1:
+        transaction_type = "Expense"
+    elif transaction_type == 0:
+        transaction_type = "Income"
+    else:
+        print("Invalid transaction type. \nOperation cancelled.")
+        return
     
     global dataset
-    new_entry = pd.DataFrame([[date, category, amount, data_type]], columns = ["Date", "Category", "Amount", "Type"])
+    new_entry = pd.DataFrame([[date, category, amount, transaction_type]], columns = ["Date", "Category", "Amount", "Type"])
     dataset = pd.concat([dataset, new_entry], ignore_index = True)
     print("Transaction added successfully.")
 
@@ -22,7 +30,14 @@ def View():
     else:
         print("\nSummary of Transactions:")
         print(dataset)
-        print("\nTotal Amount: ", dataset["Amount"].sum())
+        
+        total_income = dataset.loc[dataset["Type"] == "Income", "Amount"].sum()
+        total_expense = dataset.loc[dataset["Type"] == "Expense", "Amount"].sum()
+        net_total = total_income - total_expense
+        
+        print("\nTotal Income: ", total_income)
+        print("Total Expenses: ", total_expense)
+        print("Net Total: ", net_total)
 
 def Delete():
     if dataset.empty:
@@ -45,7 +60,7 @@ def Delete():
 
 while True:
     print("\nPersonal Expense Tracker \n1. Add Transaction \n2. View Summary \n3. Delete Transaction \n4. Save & Exit")
-    choice = int(input("Your choice: "))
+    choice = int(input("Enter the number of your choice: "))
     
     if choice == 1:
         Add()
