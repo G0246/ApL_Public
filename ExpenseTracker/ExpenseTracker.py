@@ -1,3 +1,4 @@
+from datetime import date
 import pandas as pd, os
 
 if os.path.exists("Expenses.csv"):
@@ -6,7 +7,7 @@ else:
     dataset = pd.DataFrame(columns = ["Date", "Category", "Amount", "Type"])
 
 def Add():
-    date = input("Enter the date (YYYY-MM-DD): ")
+    target_date = input("Enter the date (YYYY-MM-DD) (Leave blank for today's date): ")
     category = input("Enter the category: ")
     amount = float(input("Enter the amount: "))
     transaction_type = int(input("Enter the number of the type (Income = 0 / Expense = 1): "))
@@ -19,8 +20,11 @@ def Add():
         print("Invalid transaction type. \nOperation cancelled.")
         return
     
+    if not target_date:
+        target_date = date.today()
+
     global dataset
-    new_entry = pd.DataFrame([[date, category, amount, transaction_type]], columns = ["Date", "Category", "Amount", "Type"])
+    new_entry = pd.DataFrame([[target_date, category, amount, transaction_type]], columns = ["Date", "Category", "Amount", "Type"])
     dataset = pd.concat([dataset, new_entry], ignore_index = True)
     print("Transaction added successfully.")
 
