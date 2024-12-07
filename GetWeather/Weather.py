@@ -102,6 +102,7 @@ while True:
         break
     elif user_input.lower() in ["hong kong", "hk"]:
         # get_hk_weather()
+        # API not finished
         get_weather(user_input)
     else:
-        get_weather_(user_input)
+        get_weather(user_input)
