@@ -36,10 +36,43 @@ def get_hk_weather():
     except requests.exceptions.RequestException as e:
         print("Error fetching data from HKO API:", e)
 
- # OpenWeatherMap API Example
+# https://openweathermap.org/api/geocoding-api
+# https://openweathermap.org/current
+def get_coordinates(city_name):
+    api_key = os.getenv("OPENWEATHER_API_KEY")
+    geocoding_api_url = f"http://api.openweathermap.org/geo/1.0/direct?q={city_name}&limit=1&appid={api_key}"
+    
+    response = requests.get(geocoding_api_url)
+    
+    if response.status_code != 200 or not response.json():
+        print(f"\nCannot find coordinates for {city_name}: {response.status_code} \nTry typing out the full name of the place you want to check!")
+        return None, None
+
+    data = response.json()[0]
+    print(data["lat"], data["lon"])
+    return data["lat"], data["lon"]
+
+def get_uv_index(lat, lon, api_key):
+    uv_index_api_url = f"http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={api_key}"
+    response = requests.get(uv_index_api_url)
+    
+    if response.status_code != 200:
+        print(f"Cannot fetch UV index: {response.status_code}")
+        return None
+
+    uv_data = response.json()
+    return uv_data["value"]
+
 def get_weather(city_name):
     api_key = os.getenv("OPENWEATHER_API_KEY")
-    openweather_api_url = f"http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api_key}&units=metric"
+    
+    # Get coordinates for the city
+    lat, lon = get_coordinates(city_name)
+    if lat is None or lon is None:
+        return
+
+    # Fetch the weather data using the coordinates
+    openweather_api_url = f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric"
     response = requests.get(openweather_api_url)
     
     if response.status_code != 200:
@@ -51,7 +84,7 @@ def get_weather(city_name):
     temperature = data["main"]["temp"]
     humidity = data["main"]["humidity"]
     weather_status = data["weather"][0]["description"]
-    uv_index = get_uv_index(data["coord"]["lat"], data["coord"]["lon"], api_key)
+    uv_index = get_uv_index(lat, lon, api_key)
 
     print(f"{city_name} Weather:")
     print(f"Temperature: {temperature}°C")
@@ -59,13 +92,6 @@ def get_weather(city_name):
     print(f"UV Index: {uv_index}")
     print(f"Weather Status: {weather_status}")
     print(f"Weather info fetched from OpenWeatherMap API")
-
-# OpenWeatherMap UV Index
-def get_uv_index(lat, lon, api_key):
-    uv_api_url = f"http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={api_key}"
-    response = requests.get(uv_api_url)
-    uv_data = response.json()
-    return uv_data["value"]
 
 # User requests
 while True:
@@ -78,4 +104,4 @@ while True:
         # get_hk_weather()
         get_weather(user_input)
     else:
-        get_weather(user_input)
+        get_weather_(user_input)
