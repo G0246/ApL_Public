@@ -18,20 +18,7 @@ def get_hk_weather():
         response.raise_for_status()
         data = response.json()
 
-        if 'current' in data:
-            current_weather = data["current"]
-            temperature = current_weather.get("temp", "N/A")
-            humidity = current_weather.get("humidity", "N/A")
-            uv_index = current_weather.get("uvIndex", "N/A")
-            weather_status = current_weather.get("weather", "N/A")
-
-            print("Current Weather in Hong Kong:")
-            print(f"Temperature: {temperature} °C")
-            print(f"Humidity: {humidity} %")
-            print(f"UV Index: {uv_index}")
-            print(f"Weather Status: {weather_status}")
-        else:
-            print("Unexpected response structure:", data)
+        print("Unexpected response structure:", data)
 
     except requests.exceptions.RequestException as e:
         print("Error fetching data from HKO API:", e)
