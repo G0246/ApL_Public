@@ -1,4 +1,4 @@
-# Not working as expected 13/12/24
+# Not working as expected 14/12/24
 def print_amida(amida):
     for row in range(len(amida)):
         row_str = f"{row} "  # Add row number
@@ -33,9 +33,9 @@ def main():
     try:
         players = int(input("Enter the number of players (columns): "))
         rows = int(input("Enter the number of rows: "))
-        min_lines = int(input("Enter the minimum number of lines to add (at least 10): "))
-        if min_lines < 10:
-            print("The minimum number of lines must be at least 10!")
+        min_lines = int(input("Enter the minimum number of lines to add (at least 5): "))
+        if min_lines < 5:
+            print("The minimum number of lines must be at least 5!")
             return
     except ValueError:
         print("Invalid input. Please enter only integers.")
