@@ -32,7 +32,7 @@ def print_amida(amida, players):
 
     print()
 
-# BETA (Working as 14/12/24)
+# (Working as 14/12/24)
 # Path simulation
 def simulate_paths(amida, players):
     results = {}
@@ -80,19 +80,19 @@ def main():
     lines_added = 0
     want_to_exit = False
 
-    while lines_added < rows:
+    while lines_added < (rows * players)/2:
         try:
-            print("Current round: ", lines_added)
+            print("Current round:", lines_added)
             row = int(input(f"Enter the row (1 to {rows}) to add a line: ")) - 1
             col = int(input(f"Enter the column (1 to {players - 1}) to add a line: ")) - 1
             
+            # Check if it exist there already
             if not (0 <= row < rows and 0 <= col < players - 1):
                 print("Invalid row or column. Try again.")
                 continue
             
-            # BROKEN
             # Check if there is a line in the left or right column of the same row
-            if (col > 0 and amida[row][col - 1]) or (col < players and amida[row][col]):
+            if (col > 0 and amida[row][col - 1]) or (col < players - 2 and amida[row][col + 1]):
                 print("A line already exists in the adjacent columns. Try a different column.")
                 continue
 
@@ -103,9 +103,12 @@ def main():
             print_amida(amida, players)
         except ValueError:
             stop  = input("""Invalid input, press enter again if you want to try again. \nOr perhaps you want to exit? Type "q" to exit: """)
-            if stop == "q" or "exit":
+            if stop == "q" or stop == "end":
+                print("Ending.")
                 break
-
+            print("Continuing.")
+    
+    # Print the results and final diagram
     print("\nFinal Amida Diagram:")
     print_amida(amida, players)
 
