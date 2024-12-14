@@ -1,4 +1,4 @@
-# Ghost leg game
+# Ghost leg game by Veutexus
 # Last updated: 14/12/24
 
 # Visualize the diagram
