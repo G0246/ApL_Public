@@ -3,9 +3,9 @@
 
 # Visualize the diagram
 def print_amida(amida, players):
-    # Calculate the width for player numbers and row numbers
-    player_width = len(str(players)) + 2
-    row_width = len(str(len(amida))) + 2
+    # Set the width for player numbers and row numbers
+    player_width = len(str(players)) + 4
+    row_width = len(str(len(amida))) + 4
 
     # Header
     header = " " * row_width
@@ -53,7 +53,6 @@ def simulate_paths(amida, players):
 def main():
     print("Welcome to the Ghost Leg Game (Amida)!")
 
-
     # Ask the user
     try:
         players = int(input("Enter the number of columnns (players): "))
@@ -70,7 +69,6 @@ def main():
         row = []
         for col_index in range(players - 1):
             row.append(False)
-
         amida.append(row)
 
     print("\nInitial Amida Diagram:")
@@ -78,7 +76,6 @@ def main():
     # print(f"\nYou need to add at least {min_lines} lines.")
 
     lines_added = 0
-    want_to_exit = False
 
     while lines_added < (rows * players)/2:
         try:
