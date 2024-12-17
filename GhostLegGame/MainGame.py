@@ -77,7 +77,7 @@ def main():
 
     lines_added = 0
 
-    while lines_added < (rows * players)/2:
+    while lines_added < int(rows * players)/2:
         try:
             print("Current round:", lines_added)
             row = int(input(f"Enter the row (1 to {rows}) to add a line: ")) - 1
