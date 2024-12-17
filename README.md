@@ -4,4 +4,4 @@ Applied Learning (ApL) courses are elective subjects within the senior secondary
 Storage:
 1. Expense tracker (ExpenseTracker)
 2. Current weather info (GetWeather)
-3. Ghost leg game (GhostLegGame) (Pending)
+3. Ghost leg game (GhostLegGame)
