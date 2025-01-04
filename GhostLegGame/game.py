@@ -32,7 +32,6 @@ def print_amida(amida, players):
 
     print()
 
-# (Working as 14/12/24)
 # Path simulation
 def simulate_paths(amida, players):
     results = {}
@@ -49,7 +48,7 @@ def simulate_paths(amida, players):
         results[player] = current_col
     return results
 
-# Main function (This is killing me)
+# Main function
 def main():
     print("Welcome to the Ghost Leg Game (Amida)!")
 
@@ -57,7 +56,7 @@ def main():
     try:
         players = int(input("Enter the number of columnns (players): "))
         rows = int(input("Enter the number of rows: "))
-        # min_lines = int(input("Enter the minimum number of lines to add (at least 5): "))
+        rounds = int(input("Enter the number of rounds: "))
     except ValueError:
         print("Invalid input. Please enter only integers!")
         return
@@ -73,17 +72,21 @@ def main():
 
     print("\nInitial Amida Diagram:")
     print_amida(amida, players)
-    # print(f"\nYou need to add at least {min_lines} lines.")
 
     lines_added = 0
 
-    while lines_added < int(rows * players)/2:
+    while lines_added <= rounds:
         try:
             print("Current round:", lines_added)
             row = int(input(f"Enter the row (1 to {rows}) to add a line: ")) - 1
             col = int(input(f"Enter the column (1 to {players - 1}) to add a line: ")) - 1
             
-            # Check if it exist there already
+            # Check if repeated
+            if amida[row][col]:
+                print("There is already a line in that row and column. Try again.")
+                continue
+
+            # Check if it actually exist
             if not (0 <= row < rows and 0 <= col < players - 1):
                 print("Invalid row or column. Try again.")
                 continue
@@ -98,6 +101,7 @@ def main():
 
             print(f"\nAmida Diagram after adding line at row {row + 1}, column {col + 1}:")
             print_amida(amida, players)
+            print()
         except ValueError:
             stop  = input("""Invalid input, press enter again if you want to try again. \nOr perhaps you want to exit? Type "q" to exit: """)
             if stop == "q" or stop == "end":
