@@ -3,26 +3,6 @@ import requests, os
 
 load_dotenv()
 
-# HKOGov API endpoint (Unfinished)
-# https://www.hko.gov.hk/en/weatherAPI/doc/files/HKO_Open_Data_API_Documentation.pdf
-def get_hk_weather():
-    url = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php"
-    params = {
-        "dataType": "rhrread",
-        "lang": "en",
-        "r": "1"
-    }
-
-    try:
-        response = requests.get(url, params=params)
-        response.raise_for_status()
-        data = response.json()
-
-        print("Unexpected response structure:", data)
-
-    except requests.exceptions.RequestException as e:
-        print("Error fetching data from HKO API:", e)
-
 # https://openweathermap.org/api/geocoding-api
 # https://openweathermap.org/current
 def get_coordinates(city_name):
@@ -87,9 +67,5 @@ while True:
     if user_input.lower() in ["exit", "q"]:
         print("Exiting...")
         break
-    elif user_input.lower() in ["hong kong", "hk"]:
-        # get_hk_weather()
-        # API not finished
-        get_weather(user_input)
     else:
         get_weather(user_input)
