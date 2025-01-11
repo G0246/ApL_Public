@@ -1,3 +1,5 @@
+# Yes cpu consumer
+
 import multiprocessing
 import time
 
@@ -19,12 +21,10 @@ if __name__ == "__main__":
         processes.append(p)
 
     try:
-        # Run the stress test for a specified duration (e.g., 60 seconds)
         time.sleep(6000)
     except KeyboardInterrupt:
         print("Stress test interrupted.")
 
-    # Terminate all processes
     for p in processes:
         p.terminate()
     for p in processes:
