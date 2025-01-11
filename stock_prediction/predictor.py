@@ -32,7 +32,7 @@ def main():
     stock_code = input("Please enter the stock code: ")
 
     # Fetch stock data
-    time_series = fetch_stock_data(stock_code.strip(), api_key)
+    time_series = fetch_stock_data(stock_code.strip().upper(), api_key)
 
     # Prepare data
     X_horizontal, y_vertical = prepare_data(time_series)
@@ -48,7 +48,7 @@ def main():
     y_pred = reg.predict(np.arange(len(X_horizontal)).reshape(-1, 1))
 
     # Plot graph
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(10, 6), facecolor="white", layout="constrained")
     # Solid line for actual prices
     plt.plot(X_horizontal, y_vertical, color="blue", label="Actual Prices", linestyle="-")
     # Dotted line for prediction
