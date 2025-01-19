@@ -83,8 +83,8 @@ try:
     # Plotting the data
     plt.figure(figsize=(12, 6))
     plt.plot(stock_prices.index, prices, label="Actual Prices (Full)", color="blue")
-    plt.plot(stock_prices.index, linear_pred_rescaled, label="Linear Regression (Prediction)", linestyle="--", color="green")
-    plt.plot(stock_prices.index, poly_pred_rescaled, label="Polynomial Regression (Prediction)", linestyle=":", color="red")
+    plt.plot(stock_prices.index, linear_pred_rescaled, label="Linear Regression", linestyle="--", color="green")
+    plt.plot(stock_prices.index, poly_pred_rescaled, label="Polynomial Regression", linestyle=":", color="red")
     plt.title(f"{stock_code} Stock Prices: Actual, Trends, and Predictions")
     plt.xlabel("Date")
     plt.ylabel("Price")
@@ -98,7 +98,7 @@ try:
         plt.show()
     elif choice == "save":
         plt.savefig(f"{stock_code}_prediction.png")
-        print(f"Plot saved as {stock_code}.png")
+        print(f"Plot saved as {stock_code}_prediction.png")
     else:
         print("Invalid choice. Exiting without displaying or saving the plot.")
 
