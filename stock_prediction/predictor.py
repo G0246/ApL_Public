@@ -100,7 +100,7 @@ try:
         plt.savefig(f"{stock_code}_prediction.png")
         print(f"Plot saved as {stock_code}_prediction.png")
     else:
-        print("Invalid choice. Exiting without displaying or saving the plot.")
+        print("Invalid choice. Operation cancelled.")
 
     # Print metrics
     print(f"\nMetrics:")
