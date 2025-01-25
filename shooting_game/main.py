@@ -23,16 +23,46 @@ game_over = False
 
 # Game over screen
 def show_game_over_screen(screen, final_score):
+
     # name, size, text, antialias, color
     text = pygame.font.Font(None, 50).render("GAME OVER", True, (255, 0, 0))
     score_text = pygame.font.Font(None, 50).render(f"Score: {final_score}", True, (255, 255, 255))
-    subtext = pygame.font.Font(None, 30).render("Press R to restart or Q to quit", True, (255, 255, 255))
+    text2 = pygame.font.Font(None, 30).render("Press R to restart or Q to quit", True, (255, 255, 255))
+
+    # Random text displayer (kinda harsh ngl)
+    final_text = ""
+    if final_score <= 50:
+        random_list = [
+            "Try harder next time lol.",
+            "Skill issues?",
+            "That's all you got?",
+            "What's wrong with you?",
+            "What you tryna achieve?",
+            "Better luck next time.",
+        ]
+        text_choice = random.randint(0, len(random_list) - 1)
+        final_text = random_list[text_choice]
+    else:
+        random_list = [
+            "Not too bad.",
+            "Pretty good huh.",
+            "You can do better.",
+            "That's something.",
+            "Great performance.",
+            "You did well.",
+        ]
+        text_choice = random.randint(0, len(random_list) - 1)
+        final_text = random_list[text_choice]
+
+    add_text = pygame.font.Font(None, 25).render(f"{final_text}", True, (255, 255, 255))
 
     # Using DISPLAY_SIZE for easier change in the future
     screen.fill((0, 0, 0))
     screen.blit(text, (DISPLAY_SIZE[0] // 2 - text.get_width() // 2, DISPLAY_SIZE[1] // 2 - 80))
     screen.blit(score_text, (DISPLAY_SIZE[0] // 2 - score_text.get_width() // 2, DISPLAY_SIZE[1] // 2 - 30))
-    screen.blit(subtext, (DISPLAY_SIZE[0] // 2 - subtext.get_width() // 2, DISPLAY_SIZE[1] // 2 + 20))
+    screen.blit(text2, (DISPLAY_SIZE[0] // 2 - text2.get_width() // 2, DISPLAY_SIZE[1] // 2 + 20))
+    screen.blit(add_text, (DISPLAY_SIZE[0] // 2 - add_text.get_width() // 2, DISPLAY_SIZE[1] // 2 + 50))
+
     pygame.display.update()
 
     waiting = True
