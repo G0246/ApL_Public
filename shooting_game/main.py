@@ -23,6 +23,7 @@ game_over = False
 
 # Game over screen
 def show_game_over_screen(screen, final_score):
+    # name, size, text, antialias, color
     text = pygame.font.Font(None, 50).render("GAME OVER", True, (255, 0, 0))
     score_text = pygame.font.Font(None, 50).render(f"Score: {final_score}", True, (255, 255, 255))
     subtext = pygame.font.Font(None, 30).render("Press R to restart or Q to quit", True, (255, 255, 255))
@@ -76,6 +77,10 @@ while running:
             # Remove enemy outside the screen
             if enemy[1] > DISPLAY_SIZE[1]:
                 enemies.pop(i)
+                score -= 5
+                if score < 0:
+                    score = 0
+                    game_over = True
 
         # Collision detection (hit you lol)
         for i in range(len(bullets) - 1, -1, -1):
@@ -92,6 +97,7 @@ while running:
                     bullets.pop(i)
                     enemies.pop(j)
                     score += 5
+                    # ENEMY_SPAWN_RATE -= .5
                     break
 
         # Draw player, bullets, and enemies
