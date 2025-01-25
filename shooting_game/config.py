@@ -5,7 +5,7 @@ PLAYER_SPEED = 5            # Speed
 
 # Bullets
 BULLET_WIDTH = 15
-BULLET_HEIGHT = 30
+BULLET_HEIGHT = 35
 
 # Display
 DISPLAY_SIZE = (360, 640)

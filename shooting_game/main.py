@@ -67,12 +67,15 @@ while running:
                 bullets.remove(bullet)
 
         # Move and handle enemies
-        for enemy in enemies[:]:
+        for i in range(len(enemies) - 1, -1, -1):
+            enemy = enemies[i]
             enemy[1] += ENEMY_SPEED
             if pygame.Rect(enemy[0] - ENEMY_RADIUS, enemy[1] - ENEMY_RADIUS, ENEMY_RADIUS * 2, ENEMY_RADIUS * 2).colliderect(player):
                 game_over = True
+
+            # Remove enemy outside the screen
             if enemy[1] > DISPLAY_SIZE[1]:
-                enemies.remove(enemy)
+                enemies.pop(i)
 
         # Collision detection (hit you lol)
         for i in range(len(bullets) - 1, -1, -1):
