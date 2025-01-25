@@ -11,3 +11,4 @@ Storage:
 2. Current weather info (get_weather)
 3. Ghost leg game (ghost_leg)
 4. Stock predictior (stock_prediction)
+5. Simple shooting game (shooting_game)
