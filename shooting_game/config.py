@@ -11,6 +11,6 @@ BULLET_HEIGHT = 35
 DISPLAY_SIZE = (360, 640)
 
 # Enemy
-ENEMY_SPAWN_RATE = 100  # Higher = less spawn
+ENEMY_SPAWN_RATE = 70  # Higher value = less frequent spawns
 ENEMY_SPEED = 4
 ENEMY_RADIUS = 15
