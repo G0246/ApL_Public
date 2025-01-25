@@ -1,11 +1,11 @@
 # Player
-PLAYER_FIRE_COOLDOWN = 500  # In milliseconds
-PLAYER = (155, 590, 50, 50)
-PLAYER_SPEED = 10
+PLAYER_FIRE_COOLDOWN = 200  # In milliseconds
+PLAYER = (155, 590, 50, 50) # Size
+PLAYER_SPEED = 5            # Speed
 
 # Bullets
-BULLET_WIDTH = 5
-BULLET_HEIGHT = 10
+BULLET_WIDTH = 15
+BULLET_HEIGHT = 30
 
 # Display
 DISPLAY_SIZE = (360, 640)
