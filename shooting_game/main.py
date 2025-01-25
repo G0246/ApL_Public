@@ -2,7 +2,7 @@ import pygame
 import sys
 from pygame.locals import *
 from config import *
-# from sprite import *
+from handler import *
 
 pygame.init()
 pygame.display.set_caption("Simple Shooting Game")
@@ -22,20 +22,7 @@ while running:
     # pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(0, 0, 1280, 720))
     pygame.draw.rect(screen, (255, 255, 255), player)
 
-    key = pygame.key.get_pressed()
-    
-    if key[pygame.K_a]:
-        player.move_ip(-PLAYER_SPEED, 0)
-    elif key[pygame.K_d]:
-        player.move_ip(PLAYER_SPEED, 0)
-    
-    if player[0] < 0:
-        player[0] = 0
-    if player[0] > DISPLAY_SIZE[0] - PLAYER[3]: 
-        player[0] = DISPLAY_SIZE[0] - PLAYER[3]
-    
-    if key[pygame.K_SPACE]:
-        print("SPACE PRESSED")
+    player_handle()
 
     pygame.display.update()
     clock.tick(60)
