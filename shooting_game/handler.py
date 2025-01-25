@@ -35,6 +35,6 @@ def player_shoot(player, bullets):
 
 # Random enemy spawner
 def enemy_handle(enemies):
-    if random.randint(1, ENEMY_SPAWN_RATE) <= 5:
+    if random.randint(1, ENEMY_SPAWN_RATE) <= 2:
         x = random.randint(ENEMY_RADIUS, DISPLAY_SIZE[0] - ENEMY_RADIUS)
         enemies.append([x, 0])
