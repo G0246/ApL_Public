@@ -1,5 +1,5 @@
 # Player
-PLAYER_FIRE_COOLDOWN = 200  # In milliseconds
+PLAYER_FIRE_COOLDOWN = 150  # In milliseconds
 PLAYER = (155, 590, 50, 50) # Size
 PLAYER_SPEED = 5            # Speed
 
@@ -11,6 +11,6 @@ BULLET_HEIGHT = 35
 DISPLAY_SIZE = (360, 640)
 
 # Enemy
-ENEMY_SPAWN_RATE = 30  # Higher value = less frequent spawns
-ENEMY_SPEED = 5
+ENEMY_SPAWN_RATE = 60  # Higher value = less frequent spawns
+ENEMY_SPEED = 4
 ENEMY_RADIUS = 15
