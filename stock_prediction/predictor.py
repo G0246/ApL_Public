@@ -23,12 +23,18 @@ def fetch_stock_data(stock_code, start_date, end_date, api_key):
         "outputsize": "full",
         "apikey": api_key
     }
+
+    # Request and checker
     response = requests.get(url, params=params)
-    data = response.json()
+    if response.status_code != 200:
+        raise ValueError(f"Unable to fetch data from the API! Status code: {response.status_code}")
     
+    # Fetched data
+    data = response.json()
+        
     # Check if data is valid
     if "Time Series (Daily)" not in data:
-        raise ValueError("Invalid stock code or API limit exceeded")
+        raise ValueError("Invalid stock code!")
     
     # Convert JSON to DataFrame
     time_series = data["Time Series (Daily)"]
