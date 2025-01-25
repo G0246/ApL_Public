@@ -11,6 +11,3 @@ Storage:
 2. Current weather info (get_weather)
 3. Ghost leg game (ghost_leg)
 4. Stock predictior (stock_prediction)
-
-> [!CAUTION]
-> **COPYING IS STRICTLY PROHIBITED! 禁止抄襲！**
