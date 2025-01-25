@@ -44,12 +44,14 @@ def show_game_over_screen(screen, final_score):
         final_text = random_list[text_choice]
     else:
         random_list = [
-            "Not too bad.",
+            "Not bad.",
             "Pretty good huh.",
             "You can do better.",
             "That's something.",
             "Great performance.",
             "You did well.",
+            "Impressive.",
+            "Good job."
         ]
         text_choice = random.randint(0, len(random_list) - 1)
         final_text = random_list[text_choice]
