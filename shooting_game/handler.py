@@ -3,8 +3,7 @@ import sys
 from pygame.locals import *
 from config import *
 
-
-def player_handle():
+def player_handle(player):
     key = pygame.key.get_pressed()
     
     if key[pygame.K_a]:
@@ -19,7 +18,10 @@ def player_handle():
     
     if key[pygame.K_SPACE]:
         print("SPACE PRESSED")
+        player_shoot()
 
-
-def shooting():
+def player_shoot():
     pass
+
+def enemy_handle():
+    pygame.draw.circle(color="blue")

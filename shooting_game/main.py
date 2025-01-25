@@ -1,5 +1,4 @@
 import pygame
-import sys
 from pygame.locals import *
 from config import *
 from handler import *
@@ -22,7 +21,7 @@ while running:
     # pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(0, 0, 1280, 720))
     pygame.draw.rect(screen, (255, 255, 255), player)
 
-    player_handle()
+    player_handle(player)
 
     pygame.display.update()
     clock.tick(60)
