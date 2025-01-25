@@ -4,7 +4,7 @@ from config import *
 
 last_shot = 0
 
-# Player handler (Beta)
+# Player handler
 def player_handle(player, bullets):
     global last_shot
     keys = pygame.key.get_pressed()
@@ -21,7 +21,7 @@ def player_handle(player, bullets):
     if player[0] > DISPLAY_SIZE[0] - PLAYER[2]:
         player[0] = DISPLAY_SIZE[0] - PLAYER[2]
 
-    # Handle shooting with cooldown
+    # Handle shooting with cooldown (Depends on game ticks)
     if keys[pygame.K_SPACE]:
         current_time = pygame.time.get_ticks()
         if current_time - last_shot >= PLAYER_FIRE_COOLDOWN:
@@ -35,6 +35,6 @@ def player_shoot(player, bullets):
 
 # Random enemy spawner
 def enemy_handle(enemies):
-    if random.randint(1, ENEMY_SPAWN_RATE) == 1:
+    if random.randint(1, ENEMY_SPAWN_RATE) <= 5:
         x = random.randint(ENEMY_RADIUS, DISPLAY_SIZE[0] - ENEMY_RADIUS)
         enemies.append([x, 0])
