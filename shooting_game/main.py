@@ -7,7 +7,7 @@ from config import *
 pygame.init()
 pygame.display.set_caption("Simple Shooting Game")
 
-screen = pygame.display.set_mode((DISPLAY_SIZE))
+screen = pygame.display.set_mode(size=(DISPLAY_SIZE))
 clock = pygame.time.Clock()
 player = pygame.Rect(PLAYER)
 running = True
@@ -20,7 +20,7 @@ while running:
     screen.fill((0, 0, 0))
 
     # pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(0, 0, 1280, 720))
-    pygame.draw.rect(screen, (255, 255 , 255), player)
+    pygame.draw.rect(screen, (255, 255, 255), player)
 
     key = pygame.key.get_pressed()
     
@@ -31,9 +31,12 @@ while running:
     
     if player[0] < 0:
         player[0] = 0
-    if player[0] > DISPLAY_SIZE[0] - PLAYER[0]: 
-        player[0] = DISPLAY_SIZE[0] - PLAYER[0]
-        
+    if player[0] > DISPLAY_SIZE[0] - PLAYER[3]: 
+        player[0] = DISPLAY_SIZE[0] - PLAYER[3]
+    
+    if key[pygame.K_SPACE]:
+        print("SPACE PRESSED")
+
     pygame.display.update()
     clock.tick(60)
 
