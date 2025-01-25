@@ -1,0 +1,12 @@
+name: base
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - pandas
+  - numpy
+  - pygame
+  - matplotlib
+  - scikit-learn
+  - requests
+  - python-dotenv
